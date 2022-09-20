@@ -7,28 +7,27 @@ DROP TABLE IF EXISTS
 "quiz",
 "question",
 "tag",
-"quizz_has_tag";
+"quiz_tag";
 
 CREATE TABLE IF NOT EXISTS "level" (
     "id" serial PRIMARY KEY,
     "name" text NOT NULL
-)
+);
 
 CREATE TABLE IF NOT EXISTS "answer" (
     "id" serial PRIMARY KEY,
     "description" text NOT NULL,
     "question_id" integer NOT NULL
     
-)
+);
 
 CREATE TABLE IF NOT EXISTS "user" (
     "id" serial PRIMARY KEY,
     "email" text NOT NULL,
     "password" text NOT NULL,
     "firstname" text NOT NULL,
-    "lastname" text NOT NULL,
- 
-)
+    "lastname" text NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS "quiz" (
     "id" serial PRIMARY KEY,
@@ -37,7 +36,7 @@ CREATE TABLE IF NOT EXISTS "quiz" (
     "description" text NULL,
     "user_id" integer NOT NULL REFERENCES "user" ("id")
  
-)
+);
 
 CREATE TABLE IF NOT EXISTS "question" (
     "id" serial PRIMARY KEY,
@@ -49,22 +48,22 @@ CREATE TABLE IF NOT EXISTS "question" (
     "quiz_id" integer NOT NULL REFERENCES "quiz" ("id")
 
  
-)
+);
 
 CREATE TABLE IF NOT EXISTS "tag" (
     "id" serial PRIMARY KEY,
     "name" text NOT NULL
  
-)
+);
 
 CREATE TABLE IF NOT EXISTS "quiz_tag" (
     "quiz_id" integer REFERENCES "quiz"("id"),
     "tag_id" integer REFERENCES "tag"("id"),
     PRIMARY KEY ("quiz_id", "tag_id")
  
-)
+);
 
 ALTER TABLE "answer"
-    ADD FOREIGN KEY ("question_id") REFERENCES "question"("id)")
+    ADD FOREIGN KEY ("question_id") REFERENCES "question"("id");
 
 COMMIT;

@@ -981,7 +981,7 @@ INSERT INTO "tag" ("id", "name") VALUES
 -- Déchargement des données de la table "quiz_has_tag"
 --
 
-INSERT INTO "quiz_has_tag" ("quiz_id", "tag_id") VALUES
+INSERT INTO "quiz_tag" ("quiz_id", "tag_id") VALUES
 (1, 1),
 (1, 6),
 (2, 3),
