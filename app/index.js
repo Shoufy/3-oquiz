@@ -7,8 +7,11 @@ dotenv.config();
 const User = require('./models/User');
 const Question = require('./models/Question'); 
 const dataMapper = require('./dataMapper'); 
-const Tag = require('./models/Tag');*/
+const Tag = require('./models/Tag');
 const User = require('./models/User');
+*/
+const Question = require('./models/Question');
+const Level = require('./models/Level');
 /* 
 const maReponse = new Answer({
     id: '1',
@@ -74,6 +77,7 @@ tagToCreate.create((err, createdTag) => {
     })
 })*/
 
+/* 
 User.findAll((err, user) => {
     //console.log("findAll User : ", user)
 });
@@ -82,7 +86,7 @@ User.findById(1, (err, user) => {
     //console.log("findById(1) User : ", user)
 });
 
-/* const insertUser = new User({
+const insertUser = new User({
     email: "so@mail.com",
     password: "mdpso",
     firstname: "so",
@@ -110,7 +114,6 @@ User.findById(5, (err, user) => {
         console.log("updated user number 5", userUpdate);
     })
 });
-*/
 
 User.findById(8, (err, user) => {
     if (err) {
@@ -124,4 +127,20 @@ User.findById(8, (err, user) => {
         }
         console.log("user deleted !");
     })
+})
+
+*/
+
+Question.findAll((err, result) => {
+    if (err) {
+        console.error('err question findall : ', err);
+    }
+    console.log("question find all : ", result);
+})
+
+Level.findAll((err, result) => {
+    if (err) {
+        console.error('err level findall : ', err);
+    }
+    console.log("level find all : ", result);
 })

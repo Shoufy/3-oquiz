@@ -1,5 +1,9 @@
+const dataBase = require('../dataBase');
+
 class CoreModel {
     _id = null;
+
+    static tableName;
 
     constructor(obj) {
         this.id = obj.id;
@@ -25,6 +29,23 @@ class CoreModel {
 
     get id() {
         return this._id;
+    }
+
+    static findAll(callback) {
+        const query = {
+            text: `SELECT * FROM ${this.tableName};`
+        }
+        console.log(this, query);
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            const rows = result?.rows;
+            const data = rows.map((row) => {
+                return new this(row);
+            });
+            return callback(null, data);
+        })
     }
 }
 

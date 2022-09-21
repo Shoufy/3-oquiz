@@ -2,6 +2,7 @@ const CoreModel = require("./CoreModel");
 const dataBase = require("../dataBase");
 
 class User extends CoreModel {
+    static tableName = "user";
     _email;
     _password;
     _firstname;

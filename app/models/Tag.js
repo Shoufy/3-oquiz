@@ -2,6 +2,7 @@ const CoreModel = require("./CoreModel");
 const database = require('../dataBase');
 
 class Tag extends CoreModel {
+    static tableName = "tag";
     _name;
 
     constructor(obj) {

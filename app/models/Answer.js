@@ -1,6 +1,7 @@
 const CoreModel = require("./CoreModel");
 
 class Answer extends CoreModel {
+    static tableName = "answer";
     //Mettre un underscore pour le mettre en pseudo privé
     _description;
     _question_id;
