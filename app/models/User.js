@@ -87,6 +87,20 @@ class User extends CoreModel {
             }
         });
     }
+
+    insert(callback) {
+        const query = {
+            text: `INSERT INTO "user" (email, password, firstname, lastname) VALUES ($1, $2, $3, $4) RETURNING id`,
+            values: [this.email, this.password, this.firstname, this.lastname]
+        }
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null)
+            }
+            this.id = result?.rows?.[0]?.id;
+            return callback(null, this);
+        })
+    }
 }
 
 module.exports = User;

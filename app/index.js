@@ -75,9 +75,19 @@ tagToCreate.create((err, createdTag) => {
 })*/
 
 User.findAll((err, user) => {
-    console.log("findAll User : ", user)
+    //console.log("findAll User : ", user)
 });
 
 User.findById(1, (err, user) => {
-    console.log("findById(1) User : ", user)
+    //console.log("findById(1) User : ", user)
+});
+
+const insertUser = new User({
+    email: "so@mail.com",
+    password: "mdpso",
+    firstname: "so",
+    lastname: "du"
+})
+insertUser.insert((err, createdUser) => {
+    console.log("insert user : ", createdUser);
 });
