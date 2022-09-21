@@ -5,8 +5,8 @@ dotenv.config();
 
 /* const Answer = require('./models/Answer');
 const User = require('./models/User');
-const Question = require('./models/Question'); */
-const dataMapper = require('./dataMapper');
+const Question = require('./models/Question'); 
+const dataMapper = require('./dataMapper'); */
 const Tag = require('./models/Tag');
 /* 
 const maReponse = new Answer({
@@ -37,14 +37,18 @@ const maQuestion = new Question({
 console.log("Ma question : ", maQuestion); */
 
 
-dataMapper.getAllLevels((err, levels) => {
+/* dataMapper.getAllLevels((err, levels) => {
     console.log("getAllLevels callback : ", {err, levels})
 });
 
 dataMapper.getOneLevel(1, (err, level) => {
     console.log("getOneLevel callback : ", {err, level})
 });
-
+ */
 Tag.findAll((err, tags) => {
     console.log('findAll callback : ', {err, tags})
+});
+
+Tag.findOne(2, (err, tag) => {
+    console.log('findOne callback : ', {err, tag})
 });
