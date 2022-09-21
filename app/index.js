@@ -10,7 +10,7 @@ const dataMapper = require('./dataMapper');
 const Tag = require('./models/Tag');
 const User = require('./models/User');
 */
-const Question = require('./models/Question');
+const Tag = require('./models/Tag');
 const Level = require('./models/Level');
 /* 
 const maReponse = new Answer({
@@ -131,16 +131,16 @@ User.findById(8, (err, user) => {
 
 */
 
-Question.findAll((err, result) => {
+Tag.findAll((err, result) => {
     if (err) {
         console.error('err question findall : ', err);
     }
     console.log("question find all : ", result);
 })
 
-Level.findAll((err, result) => {
+Level.findOne(1, (err, result) => {
     if (err) {
-        console.error('err level findall : ', err);
+        console.error('err level findOne : ', err);
     }
-    console.log("level find all : ", result);
+    console.log("level findOne : ", result);
 })

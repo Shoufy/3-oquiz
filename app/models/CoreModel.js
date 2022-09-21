@@ -38,7 +38,7 @@ class CoreModel {
         console.log(this, query);
         dataBase.query(query, (err, result) => {
             if (err) {
-                return callback(err, null);
+                return callback(err, null); 
             }
             const rows = result?.rows;
             const data = rows.map((row) => {
@@ -46,6 +46,25 @@ class CoreModel {
             });
             return callback(null, data);
         })
+    }
+
+    static findOne(id, callback) {
+        const query = {
+            text: `SELECT * FROM ${this.tableName} WHERE "id" = $1;`,
+            values: [id]
+        }
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null); 
+            }
+            const row = result?.rows?.[0];
+            if (row) {
+                const data = new this(row);
+                return callback(null, data);
+            } else {
+                return callback(new Error('did not find one', null));
+            }
+        });
     }
 }
 
