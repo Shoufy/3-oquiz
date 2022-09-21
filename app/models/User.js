@@ -1,24 +1,17 @@
-class User {
-    _id;
+const CoreModel = require("./CoreModel");
+
+class User extends CoreModel {
     _email;
     _password;
     _firstname;
     _lastname;
 
     constructor(obj) {
-        this.id = obj.id;
+        super(obj);
         this.email = obj.email;
         this.password = obj.password;
         this.firstname = obj.firstname;
         this.lastname = obj.lastname;
-    }
-
-    set id(id) {
-        this._id = id;
-    }
-
-    get id() {
-        return this._id;
     }
 
     set email(email) {

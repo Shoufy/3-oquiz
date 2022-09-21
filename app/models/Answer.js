@@ -1,24 +1,14 @@
-class Answer {
+const CoreModel = require("./CoreModel");
+
+class Answer extends CoreModel {
     //Mettre un underscore pour le mettre en pseudo privé
-    _id;
     _description;
     _question_id;
 
     constructor(obj) {
-        this.id = obj.id;
+        super(obj);
         this.description = obj.description;
         this.question_id = obj.question_id;
-    }
-
-    set id(id) {
-        if (isNaN(parseInt(id, 10))) {
-            throw new Error('Id doit être un Integer')
-        }
-        this._id = parseInt(id, 10);
-    }
-
-    get id() {
-        return this._id;
     }
 
     set description(description) {
