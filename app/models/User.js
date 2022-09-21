@@ -1,4 +1,5 @@
 const CoreModel = require("./CoreModel");
+const dataBase = require("../dataBase");
 
 class User extends CoreModel {
     _email;
@@ -50,6 +51,22 @@ class User extends CoreModel {
 
     get fullName() {
         return this.lastname + ' ' + this.firstname;
+    }
+
+    static findAll(callback) {
+        const query = {
+            text : `SELECT * FROM "user";`
+        }
+        dataBase.query(query, (err, result) => {
+            if(err) {
+                return callback(err, null)
+            }
+            const rows = result.rows;
+            const users = rows.map((row) => {
+                return new User(row); 
+            })
+            return callback(null, users);      
+        })
     }
 }
 

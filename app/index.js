@@ -6,8 +6,9 @@ dotenv.config();
 /* const Answer = require('./models/Answer');
 const User = require('./models/User');
 const Question = require('./models/Question'); 
-const dataMapper = require('./dataMapper'); */
-const Tag = require('./models/Tag');
+const dataMapper = require('./dataMapper'); 
+const Tag = require('./models/Tag');*/
+const User = require('./models/User');
 /* 
 const maReponse = new Answer({
     id: '1',
@@ -44,7 +45,7 @@ console.log("Ma question : ", maQuestion); */
 dataMapper.getOneLevel(1, (err, level) => {
     console.log("getOneLevel callback : ", {err, level})
 });
- */
+ 
 Tag.findAll((err, tags) => {
     console.log('findAll callback : ', {err, tags})
 });
@@ -57,9 +58,9 @@ const tagToCreate = new Tag({
     name: 'New Tag'
 });
 tagToCreate.create((err, createdTag) => {
-    /* console.log("createdTag : ", createdTag);
+    console.log("createdTag : ", createdTag);
     console.log("comparaison : ", tagToCreate === createdTag)
-    console.log("tagToCreate id ", tagToCreate.id); */
+    console.log("tagToCreate id ", tagToCreate.id); 
     console.log("createdTag : ", createdTag);
     createdTag.name = "Updated Name";
     createdTag.update((err, updatedTag) => {
@@ -71,4 +72,8 @@ tagToCreate.create((err, createdTag) => {
             console.log("tag deleted ? ", success);
         })
     })
-})
+})*/
+
+User.findAll((err, user) => {
+    console.log("findAll User : ", user)
+});
