@@ -52,3 +52,23 @@ Tag.findAll((err, tags) => {
 Tag.findOne(2, (err, tag) => {
     console.log('findOne callback : ', {err, tag})
 });
+
+const tagToCreate = new Tag({
+    name: 'New Tag'
+});
+tagToCreate.create((err, createdTag) => {
+    /* console.log("createdTag : ", createdTag);
+    console.log("comparaison : ", tagToCreate === createdTag)
+    console.log("tagToCreate id ", tagToCreate.id); */
+    console.log("createdTag : ", createdTag);
+    createdTag.name = "Updated Name";
+    createdTag.update((err, updatedTag) => {
+        console.log('updatedTag', updatedTag);
+        console.log("tagToCreate === createdTag", tagToCreate === createdTag);
+        console.log("createdTag === updatedTag", tagToCreate === updatedTag);
+    
+        updatedTag.delete((err, success) => {
+            console.log("tag deleted ? ", success);
+        })
+    })
+})
