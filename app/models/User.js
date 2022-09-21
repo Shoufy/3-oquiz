@@ -68,6 +68,25 @@ class User extends CoreModel {
             return callback(null, users);      
         })
     }
+
+    static findById(id, callback) {
+        const query = {
+            text: `SELECT * FROM "user" WHERE "id" = $1;`,
+            values: [id] 
+        }
+        dataBase.query(query, (err, result) => {
+            if(err) {
+                return callback(err, null);
+            }
+            const userObj = result?.rows?.[0];
+            if (userObj) {
+                const userInstance = new User(userObj);
+                return callback(null, userInstance);
+            } else {
+                return callback(null, null);
+            }
+        });
+    }
 }
 
 module.exports = User;

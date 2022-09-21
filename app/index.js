@@ -77,3 +77,7 @@ tagToCreate.create((err, createdTag) => {
 User.findAll((err, user) => {
     console.log("findAll User : ", user)
 });
+
+User.findById(1, (err, user) => {
+    console.log("findById(1) User : ", user)
+});
