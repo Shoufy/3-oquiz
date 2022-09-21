@@ -101,6 +101,50 @@ class User extends CoreModel {
             return callback(null, this);
         })
     }
+
+    update(callback) {
+        const query = {
+            text: 
+            `UPDATE "user" 
+            SET 
+                email = $1, 
+                password = $2, 
+                firstname = $3, 
+                lastname = $4 
+            WHERE "id" = $5;
+            `,
+            values: [this.email, this.password, this.firstname, this.lastname, this.id]
+        }
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null)
+            }
+           /*  if (result.rowCount) {
+                return callback(null, this);
+            } else {
+                return callback(new Error('User not updated ', this));
+            } */
+            return callback(null, this); 
+        })
+    }
+
+    delete(callback) {
+        const query = {
+            text: `DELETE FROM "user" WHERE "id" = $1;`,
+            values: [this.id]
+        }
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err)
+            }
+            if (result.rowCount) {
+                return callback(null);
+            } else {
+                return callback(new Error('User not delete '));
+            }            
+        })
+    }
+
 }
 
 module.exports = User;

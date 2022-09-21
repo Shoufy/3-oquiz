@@ -82,12 +82,46 @@ User.findById(1, (err, user) => {
     //console.log("findById(1) User : ", user)
 });
 
-const insertUser = new User({
+/* const insertUser = new User({
     email: "so@mail.com",
     password: "mdpso",
     firstname: "so",
     lastname: "du"
-})
-insertUser.insert((err, createdUser) => {
-    console.log("insert user : ", createdUser);
 });
+insertUser.insert((err, createdUser) => {
+    if(err) {
+        console.error('err ', err);
+    }
+    console.log("insert user : ", createdUser);
+}); 
+
+User.findById(5, (err, user) => {
+    if (err) {
+        return console.error('erreur findById 5', err);
+    } else if (!user) {
+        return console.error("user not found ");
+    }
+   
+    user.firstname = "CHUCHU";
+    user.update((errUpdate, userUpdate) => {
+        if (errUpdate) {
+            console.error("errUpdate : ", errUpdate);
+        }
+        console.log("updated user number 5", userUpdate);
+    })
+});
+*/
+
+User.findById(8, (err, user) => {
+    if (err) {
+        return console.error('erreur findById 8', err);
+    } else if (!user) {
+        return console.error("user not found ");
+    }
+    user.delete((errDelete, userDelete) => {
+        if (errDelete) {
+            console.error('errdelete : ', errDelete);
+        }
+        console.log("user deleted !");
+    })
+})
