@@ -9,11 +9,11 @@ class Level extends CoreModel {
     }
    
     get name() {
-        return this.name;
+        return this._name;
     }
 
     set name(name) {
-        this._name = this.name;
+        this._name = name;
     }
 }
 
