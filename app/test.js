@@ -1,5 +1,6 @@
 const Answer = require('./models/Answer');
 const User = require('./models/User');
+const Question = require('./models/Question');
 
 const maReponse = new Answer({
     id: '1',
@@ -16,3 +17,14 @@ const monUser = new User({
     lastname: 'DUCK'
 })
 console.log('Mon user : ', monUser.fullName);
+
+const maQuestion = new Question({
+    id: 1,
+    question: "Quand a eu lieu la chute du mur de Berlin",
+    anecdote: "Allemagne",
+    wiki: null,
+    level_id: 1,
+    answer_id: 1,
+    quiz_id: 1,    
+})
+console.log("Ma question : ", maQuestion);
