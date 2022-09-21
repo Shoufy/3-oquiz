@@ -2,7 +2,7 @@ class CoreModel {
     _id;
 
     constructor(obj) {
-        this._id = obj.id;
+        this.id = obj.id;
     }
 
     set id(id) {
