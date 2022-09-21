@@ -1,0 +1,24 @@
+{
+  "name": "3-oquizz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shoufy/3-oquiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shoufy/3-oquiz/issues"
+  },
+  "homepage": "https://github.com/Shoufy/3-oquiz#readme",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "pg": "^8.8.0"
+  }
+}
