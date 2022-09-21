@@ -40,3 +40,7 @@ console.log("Ma question : ", maQuestion); */
 dataMapper.getAllLevels((err, levels) => {
     console.log("getAllLevels callback : ", {err, levels})
 });
+
+dataMapper.getOneLevel(1, (err, level) => {
+    console.log("getOneLevel callback : ", {err, level})
+});
