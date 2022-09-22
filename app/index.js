@@ -138,7 +138,7 @@ Level.findOne(1, (err, result) => {
 })
 */
 /*
-const createdQuiz = new Quiz({
+const createdQuiz = nLevel({
     id: 25,
     title: "le monde de Raichu",
     description: "le plus mignon du monde",
@@ -183,7 +183,6 @@ createLevel.create((errCreatedLevel, result) => {
         console.error("errCreatedLevel : ", errCreatedLevel);
     } console.log("created level : ", result);
 })
-*/
 
 const createLevel = new Level({
     //id: 5,
@@ -205,5 +204,15 @@ createLevel.save((err, updateOrCreatedLevel) => {
                 console.log("Level save or update : ", levelSavedOrUpdate);
             }
         })
-   
 })
+*/
+
+Level.findBy({
+    //id: 1,
+    name: "Expert" //On doit faire attention à la casse
+}
+    , (err, levels) => {
+        if (err) {
+            console.log('err findBy Level: ', err)
+        } console.log("levels result : ", levels);
+    })

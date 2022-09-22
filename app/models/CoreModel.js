@@ -175,18 +175,50 @@ class CoreModel {
         })
     }
 
-    static findBy(params, callback) {
-        const query = {
-            text: ``
-        }
-    }
-
     save(callback) {
         if (this.id) {
             this.update(callback);
         } else {
             this.create(callback);
         }
+    }
+
+    static findBy(params, callback) {
+        const tbKeysAndPlaceholder = [];
+        const tbValues = [];
+        let placeholderIndex = 1;
+
+        for(let paramKey in params) {
+            tbKeysAndPlaceholder.push(
+                // ex : "id" = $1
+                `"${paramKey}" = $${placeholderIndex}`
+                //`"${paramKey}" ILIKE $${placeholderIndex}` //mettre IKIKE pr éviter la casse
+            )
+            tbValues.push(params[paramKey]) //valeur du parametre en cours
+            placeholderIndex++;
+        }
+
+        const query = {
+            text: `
+            SELECT * 
+            FROM ${this.tableName} 
+            WHERE ${tbKeysAndPlaceholder.join(' AND ')}
+            ;`,
+            values: tbValues
+        }
+        console.log("query of findBy : ", query);
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            const row = result?.rows?.[0];
+            if (row) {
+                const datum = new this(row);
+                return callback(null, datum);
+            } else {
+                return callback(new Error(this.name + ' not found (findBy method)', null));
+            }
+        });
     }
 }
 
