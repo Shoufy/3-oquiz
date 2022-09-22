@@ -157,4 +157,11 @@ createdQuiz.create((err, result) => {
         console.error('erreur ds creation d un quiz ', err)
     }
     console.log('creation quiz : ', result)
+    result.description = "le plus beau de tout l'univers"
+    result.update((errUpdate, updatedQuiz) => {
+        if (errUpdate) {
+            console.error("errUpdate : ", errUpdate)
+        }
+        console.log("updatedQuiz number x ", updatedQuiz);
+    })
 })

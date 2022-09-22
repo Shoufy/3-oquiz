@@ -116,6 +116,46 @@ class CoreModel {
             }
         })
     }
+
+    update(callback) {
+        let tbKeysPlaceHolder = [];
+        let tbValues = [];
+
+        let propertyName = Object.getOwnPropertyNames(this);
+        propertyName = propertyName.filter(
+            (property) => {
+                if (property === "_id") {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        );
+        propertyName = propertyName.forEach((property, index) => {
+            tbKeysPlaceHolder.push(`${property.substring(1)} = $${index + 1}`);
+            tbValues.push(`${this[property]}`);
+        })
+        tbValues.push(this['_id']);
+        const query = {
+            text: `UPDATE "${this.constructor.tableName}"
+            SET  
+                ${tbKeysPlaceHolder.join(', ')}
+             WHERE "id" = $${tbKeysPlaceHolder.length+1};
+             `,
+            values: tbValues
+        }
+        //console.log(query);
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null)
+            }
+            if (result.rowCount) {
+                return callback(null, this);
+            } else {
+                return callback(new Error(this.constructor.name + 'not updated', this));
+            }
+        });
+    }
 }
 
 module.exports = CoreModel;
