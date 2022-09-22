@@ -3,16 +3,7 @@ const dotenv = require('dotenv');
 // Bonne pratique mettre le dotenv.config tout en haut des fichiers à charger
 dotenv.config();
 
-/* const Answer = require('./models/Answer');
-const User = require('./models/User');
-const Question = require('./models/Question'); 
-const dataMapper = require('./dataMapper'); 
-const Tag = require('./models/Tag');
-const User = require('./models/User');
-const Tag = require('./models/Tag');
 const Level = require('./models/Level');
-*/
-const Quiz = require('./models/Quiz');
 /* 
 const maReponse = new Answer({
     id: '1',
@@ -146,14 +137,14 @@ Level.findOne(1, (err, result) => {
     console.log("level findOne : ", result);
 })
 */
-
+/*
 const createdQuiz = new Quiz({
     id: 25,
     title: "le monde de Raichu",
     description: "le plus mignon du monde",
     user_id: 1
 })
-/* createdQuiz.create((err, result) => {
+ createdQuiz.create((err, result) => {
     if(err) {
         console.error('erreur ds creation d un quiz ', err)
     }
@@ -166,10 +157,53 @@ const createdQuiz = new Quiz({
         console.log("updatedQuiz number x ", updatedQuiz);
     })
     
-}) */
+}) 
 createdQuiz.delete((errDelete, success) => {
     if (errDelete) {
         console.error("errDelete ", errDelete)
     } console.log("Bien supprimé ! ", success);
     
+})
+
+User.findAll((errUserAll, userAll) => {
+    if(errUserAll) {
+        console.error('errUserAll : ', errUserAll)
+    } console.log("user findAll : ", userAll);
+})
+Quiz.findOne(3, (errQuizId, quizId) => {
+    if (errQuizId) {
+        console.error("errQuizId : ", errQuizId);
+    } console.log("quiz id number 3 : ", quizId)
+})
+createLevel = new Level({
+    name: "Très difficile"
+})
+createLevel.create((errCreatedLevel, result) => {
+    if (errCreatedLevel) {
+        console.error("errCreatedLevel : ", errCreatedLevel);
+    } console.log("created level : ", result);
+})
+*/
+
+const createLevel = new Level({
+    //id: 5,
+    name: "Master"
+})
+
+createLevel.save((err, updateOrCreatedLevel) => {
+    if(err) {
+        console.error('err ', err);
+    } else {
+        console.log("updateOrCreatedLevel : ", updateOrCreatedLevel);
+    }
+    
+    createLevel.name = "Sangoku";
+        createLevel.save((errSave, levelSavedOrUpdate) => {
+            if (errSave) {
+                console.log('err save : ', errSave)
+            } else {
+                console.log("Level save or update : ", levelSavedOrUpdate);
+            }
+        })
+   
 })

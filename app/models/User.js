@@ -54,7 +54,7 @@ class User extends CoreModel {
         return this.lastname + ' ' + this.firstname;
     }
 
-    static findAll(callback) {
+    /* static findAll(callback) {
         const query = {
             text : `SELECT * FROM "user";`
         }
@@ -120,12 +120,11 @@ class User extends CoreModel {
             if (err) {
                 return callback(err, null)
             }
-           /*  if (result.rowCount) {
+            if (result.rowCount) {
                 return callback(null, this);
             } else {
                 return callback(new Error('User not updated ', this));
-            } */
-            return callback(null, this); 
+            }
         })
     }
 
@@ -144,7 +143,7 @@ class User extends CoreModel {
                 return callback(new Error('User not delete '));
             }            
         })
-    }
+    } */
 
 }
 

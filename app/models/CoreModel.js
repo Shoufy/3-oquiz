@@ -33,7 +33,7 @@ class CoreModel {
 
     static findAll(callback) {
         const query = {
-            text: `SELECT * FROM ${this.tableName};`
+            text: `SELECT * FROM "${this.tableName}";`
         }
         console.log(this, query);
         dataBase.query(query, (err, result) => {
@@ -152,7 +152,7 @@ class CoreModel {
             if (result.rowCount) {
                 return callback(null, this);
             } else {
-                return callback(new Error(this.constructor.name + 'not updated', this));
+                return callback(new Error(this.constructor.name + ' not updated', this));
             }
         });
     }
@@ -173,6 +173,20 @@ class CoreModel {
                 return callback(new Error(this.constructor.name + 'not delete'));
             }            
         })
+    }
+
+    static findBy(params, callback) {
+        const query = {
+            text: ``
+        }
+    }
+
+    save(callback) {
+        if (this.id) {
+            this.update(callback);
+        } else {
+            this.create(callback);
+        }
     }
 }
 
