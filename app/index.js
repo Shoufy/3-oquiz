@@ -9,9 +9,10 @@ const Question = require('./models/Question');
 const dataMapper = require('./dataMapper'); 
 const Tag = require('./models/Tag');
 const User = require('./models/User');
-*/
 const Tag = require('./models/Tag');
 const Level = require('./models/Level');
+*/
+const Quiz = require('./models/Quiz');
 /* 
 const maReponse = new Answer({
     id: '1',
@@ -129,7 +130,7 @@ User.findById(8, (err, user) => {
     })
 })
 
-*/
+
 
 Tag.findAll((err, result) => {
     if (err) {
@@ -143,4 +144,17 @@ Level.findOne(1, (err, result) => {
         console.error('err level findOne : ', err);
     }
     console.log("level findOne : ", result);
+})
+*/
+
+const createdQuiz = new Quiz({
+    title: "le monde de Raichu",
+    description: "le plus mignon du monde",
+    user_id: 1
+})
+createdQuiz.create((err, result) => {
+    if(err) {
+        console.error('erreur ds creation d un quiz ', err)
+    }
+    console.log('creation quiz : ', result)
 })
