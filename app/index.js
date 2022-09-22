@@ -148,20 +148,28 @@ Level.findOne(1, (err, result) => {
 */
 
 const createdQuiz = new Quiz({
+    id: 25,
     title: "le monde de Raichu",
     description: "le plus mignon du monde",
     user_id: 1
 })
-createdQuiz.create((err, result) => {
+/* createdQuiz.create((err, result) => {
     if(err) {
         console.error('erreur ds creation d un quiz ', err)
     }
     console.log('creation quiz : ', result)
-    result.description = "le plus beau de tout l'univers"
+    result.description = "TEST"
     result.update((errUpdate, updatedQuiz) => {
         if (errUpdate) {
             console.error("errUpdate : ", errUpdate)
         }
         console.log("updatedQuiz number x ", updatedQuiz);
     })
+    
+}) */
+createdQuiz.delete((errDelete, success) => {
+    if (errDelete) {
+        console.error("errDelete ", errDelete)
+    } console.log("Bien supprimé ! ", success);
+    
 })

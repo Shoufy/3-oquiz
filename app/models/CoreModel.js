@@ -156,6 +156,24 @@ class CoreModel {
             }
         });
     }
+
+    delete(callback) {
+        const query = {
+            text: `DELETE FROM "${this.constructor.tableName}" 
+            WHERE "id" = $1;`,
+            values: [this.id]
+        }
+        dataBase.query(query, (err, result) => {
+            if (err) {
+                return callback(err)
+            }
+            if (result.rowCount) {
+                return callback(null);
+            } else {
+                return callback(new Error(this.constructor.name + 'not delete'));
+            }            
+        })
+    }
 }
 
 module.exports = CoreModel;
